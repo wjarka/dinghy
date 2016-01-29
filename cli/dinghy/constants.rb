@@ -24,3 +24,5 @@ HOME_DINGHY = HOME+'.dinghy'
 unless VAR.directory?
   FileUtils.mkdir_p VAR
 end
+WEB_HOME='/var/www/html'
+

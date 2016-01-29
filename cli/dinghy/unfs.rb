@@ -78,6 +78,7 @@ class Unfs
   def exports_body
     <<-BODY.gsub(/^    /, '')
     "#{HOME}" #{machine.vm_ip}(rw,all_squash,anonuid=#{Process.uid},anongid=#{Process.gid})
+    "#{WEB_HOME}" #{machine.vm_ip}(rw,all_squash,anonuid=#{Process.uid},anongid=${Process.gid})
     BODY
   end
 

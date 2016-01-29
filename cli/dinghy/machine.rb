@@ -83,7 +83,14 @@ class Machine
     ssh("if [ $(grep -c #{Shellwords.escape('/Users[^/]')} /proc/mounts) -gt 0 ]; then sudo umount /Users || true; fi;")
 
     ssh("sudo mkdir -p #{unfs.guest_mount_dir}")
+
     ssh("sudo mount -t nfs #{host_ip}:#{unfs.host_mount_dir} #{unfs.guest_mount_dir} -o nfsvers=3,udp,mountport=#{unfs.port},port=#{unfs.port},nolock,hard,intr")
+
+    puts "Mounting NFS #{WEB_HOME}"
+    ssh("sudo umount #{WEB_HOME} || true")
+    ssh("sudo mkdir -p #{WEB_HOME}")
+    ssh("sudo mount -t nfs #{host_ip}:#{WEB_HOME} #{WEB_HOME} -o nfsvers=3,udp,mountport=#{unfs.port},port=#{unfs.port},nolock,hard,intr")
+
   end
 
   def ssh(*command)

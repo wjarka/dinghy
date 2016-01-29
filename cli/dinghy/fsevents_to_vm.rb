@@ -44,7 +44,6 @@ class FseventsToVm
     %W[
       #{BIN_PATH}
       start
-      --ssh-config-file=#{HOME}/.dinghy/ssh-config
     ]
   end
 end

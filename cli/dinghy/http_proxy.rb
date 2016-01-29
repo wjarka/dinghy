@@ -3,7 +3,7 @@ require 'stringio'
 require 'dinghy/machine'
 
 class HttpProxy
-  CONTAINER_NAME = "dinghy_http_proxy"
+  CONTAINER_NAME = "http_proxy"
 
   attr_reader :machine
 
@@ -16,7 +16,7 @@ class HttpProxy
     System.capture_output do
       docker.system("rm", "-fv", CONTAINER_NAME)
     end
-    docker.system("run", "-d", "-p", "80:80", "-v", "/var/run/docker.sock:/tmp/docker.sock", "--name", CONTAINER_NAME, "codekitchen/dinghy-http-proxy")
+    docker.system("run", "-d", "-p", "80:80", "-v", "/var/run/docker.sock:/tmp/docker.sock", "--name", CONTAINER_NAME, "dev:5000/creatuity/proxy")
   end
 
   def status
